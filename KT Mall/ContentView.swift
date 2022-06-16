@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var selectedIndex = 0
+    @State var pagerSelectedIndex = 0
+    @State var tabSelectedIndex = 0
     let tabs: [TabItemData] = [
         TabItemData(image: "house.fill", title: "Home"),
         TabItemData(image: "cart.fill", title: "Cart"),
@@ -17,9 +18,17 @@ struct ContentView: View {
     ]
 
     var body: some View {
-        TabBar(items: tabs, selectedIndex: $selectedIndex) { index in
-            Text("Home")
-                .tag(0)
+        TabBar(items: tabs, selectedIndex: $tabSelectedIndex) { index in
+            PagerTabStrip(selectedIndex: $pagerSelectedIndex) {
+                Text("Sun Screen")
+                Text("Face Mask")
+                Text("Body")
+            } content: {
+                Color.mint
+                Color.blue
+                Color.yellow
+            }.tag(0)
+            
             Text("Cart")
                 .tag(1)
             Text("Favorites")

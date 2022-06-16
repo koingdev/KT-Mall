@@ -34,7 +34,7 @@ struct TabBarItem: View {
     }
 }
 
-struct TabBar<Content>: View where Content: View {
+struct TabBar<Content: View>: View {
     
     let items: [TabItemData]
     @Binding var selectedIndex: Int
@@ -48,7 +48,6 @@ struct TabBar<Content>: View where Content: View {
             TabView(selection: $selectedIndex) {
                 ForEach(items.indices, id: \.self) { index in
                     content(index)
-                        .tag(index)
                         .opacity(fadeInOut ? 0 : 1)
                 }
             }
@@ -57,9 +56,9 @@ struct TabBar<Content>: View where Content: View {
             VStack {
                 Spacer()
                 
-                VStack(alignment: .center) {
+                VStack(alignment: .center, spacing: 0) {
                     Divider()
-                    HStack(alignment: .center) {
+                    HStack(alignment: .center, spacing: 0) {
                         Spacer()
                         
                         ForEach(items.indices, id: \.self) { index in
