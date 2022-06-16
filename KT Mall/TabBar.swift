@@ -7,22 +7,48 @@
 
 import SwiftUI
 
+struct TabItemData {
+    let image: String
+    let title: String
+}
+
+struct TabBarItem: View {
+    let item: TabItemData
+    let isSelected: Bool
+    
+    var body: some View {
+        VStack(spacing: 2) {
+            let color = isSelected ? Color.black : Color.gray.opacity(0.7)
+            Image(systemName: item.image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 24, height: 24)
+                .foregroundColor(color)
+
+            Text(item.title)
+                .foregroundColor(color)
+                .font(.caption)
+                .fontWeight(.medium)
+            
+        }
+    }
+}
+
 struct TabBar<Content>: View where Content: View {
     
-    @State var images: [Image]
-    @State var titles: [String]
-    @State var tabIndex: Int
-    @State var contents: [Content]
+    let items: [TabItemData]
+    @Binding var selectedIndex: Int
+    @ViewBuilder let content: (Int) -> Content
     
     @State private var fadeInOut = false
     
     var body: some View {
         ZStack(alignment: .center) {
-            
             // Page Content
-            ForEach(contents.indices, id: \.self) { i in
-                if i == tabIndex {
-                    contents[i]
+            TabView(selection: $selectedIndex) {
+                ForEach(items.indices, id: \.self) { index in
+                    content(index)
+                        .tag(index)
                         .opacity(fadeInOut ? 0 : 1)
                 }
             }
@@ -30,37 +56,29 @@ struct TabBar<Content>: View where Content: View {
             // Tab
             VStack {
                 Spacer()
-                VStack(alignment: .center, spacing: 0) {
+                
+                VStack(alignment: .center) {
                     Divider()
-
-                    HStack(alignment: .center, spacing: 0) {
+                    HStack(alignment: .center) {
                         Spacer()
-                        ForEach(images.indices, id: \.self) { i in
-                            VStack(spacing: 2) {
-                                let color = i == tabIndex ? Color.black : Color.gray.opacity(0.7)
-                                images[i]
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 24, height: 24)
-                                    .foregroundColor(color)
-
-                                Text(titles[i])
-                                    .foregroundColor(color)
-                                    .font(.caption)
-                                    .fontWeight(.medium)
-                                
-                            }
-                            .onTapGesture {
-                                if i == tabIndex { return }
-
-                                fadeInOut = tabIndex != i
-                                tabIndex = i
+                        
+                        ForEach(items.indices, id: \.self) { index in
+                            
+                            Button {
+                                if index == selectedIndex { return }
+                                fadeInOut = selectedIndex != index
+                                selectedIndex = index
                                 withAnimation(.easeInOut(duration: 0.4)) {
                                     fadeInOut.toggle()
                                 }
+                            } label: {
+                                let isSelected = index == selectedIndex
+                                TabBarItem(item: items[index], isSelected: isSelected)
                             }
+
                             Spacer()
                         }
+                        
                     }
                     .padding(.top, 10)
                     .padding(.bottom, 30)
@@ -68,33 +86,10 @@ struct TabBar<Content>: View where Content: View {
                 }
                 .background(Color.white)
                 .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: -2)
-                
+
             }
             .edgesIgnoringSafeArea(.bottom)
         }
         
-    }
-}
-
-struct TabBar_Previews: PreviewProvider {
-    static var images: [Image] = [
-        Image(systemName: "house.fill"),
-        Image(systemName: "cart.fill"),
-        Image(systemName: "heart.fill"),
-        Image(systemName: "gear")
-    ]
-    static var titles: [String] = [
-        "Home",
-        "Cart",
-        "Favorite",
-        "Settings"
-    ]
-    static var previews: some View {
-        TabBar(images: images, titles: titles, tabIndex: 0, contents: [
-            Text("Home"),
-            Text("Cart"),
-            Text("Favorites"),
-            Text("Settings")
-        ])
     }
 }

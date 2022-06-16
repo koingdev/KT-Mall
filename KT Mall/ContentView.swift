@@ -8,25 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
-    var images: [Image] = [
-        Image(systemName: "house.fill"),
-        Image(systemName: "cart.fill"),
-        Image(systemName: "heart.fill"),
-        Image(systemName: "person.circle.fill")
+    @State var selectedIndex = 0
+    let tabs: [TabItemData] = [
+        TabItemData(image: "house.fill", title: "Home"),
+        TabItemData(image: "cart.fill", title: "Cart"),
+        TabItemData(image: "heart.fill", title: "Favorite"),
+        TabItemData(image: "person.circle.fill", title: "Account")
     ]
-    var titles: [String] = [
-        "Home",
-        "Cart",
-        "Favorite",
-        "Settings"
-    ]
+
     var body: some View {
-        TabBar(images: images, titles: titles, tabIndex: 0, contents: [
-            Text("Home"),
-            Text("Cart"),
-            Text("Favorites"),
-            Text("Settings")
-        ])
+        TabBar(items: tabs, selectedIndex: $selectedIndex) { index in
+            Text("Home")
+                .tag(0)
+            Text("Cart")
+                .tag(1)
+            Text("Favorites")
+                .tag(2)
+            Text("Account")
+                .tag(3)
+        }
     }
 }
 
