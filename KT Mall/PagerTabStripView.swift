@@ -21,7 +21,7 @@ struct PagerTabStripItem<Title: View>: View {
         titles[index]
             .foregroundColor(isSelected ? tintColor : .secondary)
             .frame(minWidth: minWidth, maxHeight: maxHeight)
-            .padding(6)
+            .padding(2)
             .robotoFont()
             .background {
                 ZStack {

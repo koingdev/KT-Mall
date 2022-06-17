@@ -28,7 +28,7 @@ struct ProductCardView: View {
                         .scaledToFit()
                 } else if phase.error != nil {
                     Text("Failed to load")
-                        .robotoFont(15)
+                        .robotoFont()
                         .foregroundColor(.secondary)
                 } else {
                     ProgressView()
@@ -42,19 +42,19 @@ struct ProductCardView: View {
                 Text(product.name)
                     .foregroundColor(.primary)
                     .lineLimit(3)
-                    .robotoFont(15)
+                    .robotoFont()
                 
                 HStack {
-                    Text("\(product.price)$")
+                    Text("$\(product.price)")
                         .foregroundColor(.secondary)
-                        .robotoFont(17)
+                        .robotoFont(16)
                     Spacer()
                     Image(systemName: "heart")
                         .resizable()
                         .frame(width: 22, height: 22)
                         .foregroundColor(.pink.opacity(0.7))
                 }
-            }.padding(12)
+            }.padding(8)
         }
         .frame(height: 280)
         .overlay(

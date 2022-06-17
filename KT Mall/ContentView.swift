@@ -36,11 +36,11 @@ struct ContentView: View {
                 Text("Body")
             ]) {
                 ScrollView {
-                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 12), count: 2), spacing: 12) {
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 2), spacing: 8) {
                         ForEach(products, id: \.id) { product in
                             ProductCardView(product: product, animation: productCardAnimation)
                         }
-                    }.padding()
+                    }.padding(8)
                 }.tag(0)
 
                 Color.white.tag(1)
@@ -60,7 +60,7 @@ struct ContentView: View {
 }
 
 extension View {
-    func robotoFont(_ size: CGFloat = 16) -> some View {
+    func robotoFont(_ size: CGFloat = 14) -> some View {
         font(Font.custom("Roboto", size: size))
     }
 }

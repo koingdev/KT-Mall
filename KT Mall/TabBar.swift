@@ -18,7 +18,7 @@ struct TabBarItem: View {
     
     var body: some View {
         VStack(spacing: 2) {
-            let color = isSelected ? Color.primary : Color.secondary
+            let color = isSelected ? Color.primary : Color.gray.opacity(0.7)
             Image(systemName: item.image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
@@ -27,8 +27,7 @@ struct TabBarItem: View {
 
             Text(item.title)
                 .foregroundColor(color)
-                .fontWeight(.medium)
-                .robotoFont(14)
+                .robotoFont()
             
         }
     }
