@@ -25,10 +25,10 @@ struct ContentView: View {
                 Text("Body"),
                 Text("Best Seller")
             ]) {
-                Color.mint.tag(0)
-                Color.blue.tag(1)
-                Color.yellow.tag(2)
-                Color.brown.tag(3)
+                Color.white.tag(0)
+                Color.white.tag(1)
+                Color.white.tag(2)
+                Color.white.tag(3)
             }
             .tag(0)
             
@@ -39,6 +39,12 @@ struct ContentView: View {
             Text("Account")
                 .tag(3)
         }
+    }
+}
+
+extension View {
+    func robotoFont(_ size: CGFloat = 16) -> some View {
+        font(Font.custom("Roboto", size: size))
     }
 }
 

@@ -7,57 +7,66 @@
 
 import SwiftUI
 
+struct PagerTabStripItem<Title: View>: View {
+    @Binding var selectedIndex: Int
+    @Binding var titles: [Title]
+    var index: Int
+    let tintColor: Color
+    let namespace: Namespace.ID
+    let maxHeight: CGFloat = 48
+    var minWidth: CGFloat { screenWidth / 4 }
+
+    var body: some View {
+        ZStack(alignment: .center) {
+            let isSelected = selectedIndex == index
+            if isSelected {
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(tintColor.opacity(0.2))
+                    .matchedGeometryEffect(id: "underline",
+                                           in: namespace,
+                                           properties: .frame)
+            } else {
+                Color.clear
+            }
+            
+            titles[index]
+                .foregroundColor(isSelected ? tintColor : .secondary)
+                .padding(.horizontal, 6)
+                .robotoFont()
+        }
+        .padding(4)
+        .frame(minWidth: minWidth, maxHeight: maxHeight)
+        .onTapGesture {
+            selectedIndex = index
+        }
+        .animation(.spring(), value: selectedIndex)
+    }
+}
+
 struct PagerTabStrip<Title: View, Content: View>: View {
-    
-    let tintColor = Color.gray
     @Binding var selectedIndex: Int
     @State var titles: [Title]
     @ViewBuilder let content: () -> Content
     @Namespace var namespace
+    var tintColor = Color.mint
     
     var body: some View {
         VStack(spacing: 0) {
             ScrollView(.horizontal, showsIndicators: false) {
                 ScrollViewReader { proxy in
-
                     HStack(alignment: .center) {
                         ForEach(titles.indices, id: \.self) { index in
-                            ZStack(alignment: .center) {
-                                if selectedIndex == index {
-                                    RoundedRectangle(cornerRadius: 20)
-                                        .fill(.mint.opacity(0.4))
-                                        .matchedGeometryEffect(id: "underline",
-                                                               in: namespace,
-                                                               properties: .frame)
-                                } else {
-                                    Color.clear
-                                }
-                                
-                                HStack {
-                                    Image(systemName: "heart")
-                                        .foregroundColor(.red)
-                                    titles[index]
-                                        .font(.subheadline.bold())
-                                    .foregroundColor(.secondary)
-                                }
-                                .padding(.horizontal, 6)
-                            }
-                            .padding(4)
-                            .frame(minWidth: screenWidth / 4, maxHeight: 48)
-                            .onTapGesture {
-                                selectedIndex = index
-                            }
+                            PagerTabStripItem(selectedIndex: $selectedIndex, titles: $titles, index: index, tintColor: tintColor, namespace: namespace)
                             .onChange(of: selectedIndex) { _ in
                                 withAnimation(.spring()) {
-                                    proxy.scrollTo(selectedIndex)
+                                    proxy.scrollTo(selectedIndex, anchor: .trailing)
                                 }
                             }
-                            .animation(.spring(), value: selectedIndex)
                         }
                     }
+                    .padding(.horizontal, 6)
                 }
             }
-            
 
             
             TabView(selection: $selectedIndex) {
@@ -72,12 +81,4 @@ struct PagerTabStrip<Title: View, Content: View>: View {
 
 extension View {
     var screenWidth: CGFloat { UIScreen.main.bounds.width }
-    
-    func maxWidth(alignment: Alignment = .center) -> some View {
-        frame(maxWidth: .infinity, alignment: alignment)
-    }
-    
-    func fullScreen(alignment: Alignment = .center) -> some View {
-        frame(width: screenWidth, alignment: alignment)
-    }
 }

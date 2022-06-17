@@ -27,8 +27,8 @@ struct TabBarItem: View {
 
             Text(item.title)
                 .foregroundColor(color)
-                .font(.caption)
                 .fontWeight(.medium)
+                .robotoFont(14)
             
         }
     }
@@ -78,7 +78,7 @@ struct TabBar<Content: View>: View {
                     
                 }
                 .background(Color.white)
-                .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: -2)
+                .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: -2)
 
             }
             .edgesIgnoringSafeArea(.bottom)
