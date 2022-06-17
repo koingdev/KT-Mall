@@ -15,31 +15,29 @@ struct PagerTabStripItem<Title: View>: View {
     let namespace: Namespace.ID
     let maxHeight: CGFloat = 48
     var minWidth: CGFloat { screenWidth / 4 }
-
+    
     var body: some View {
-        ZStack(alignment: .center) {
-            let isSelected = selectedIndex == index
-            if isSelected {
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(tintColor.opacity(0.2))
-                    .matchedGeometryEffect(id: "underline",
-                                           in: namespace,
-                                           properties: .frame)
-            } else {
-                Color.clear
+        let isSelected = selectedIndex == index
+        titles[index]
+            .foregroundColor(isSelected ? tintColor : .secondary)
+            .frame(minWidth: minWidth, maxHeight: maxHeight)
+            .padding(6)
+            .robotoFont()
+            .background {
+                ZStack {
+                    if isSelected {
+                        tintColor.opacity(0.2)
+                            .clipShape(Capsule())
+                            .matchedGeometryEffect(id: "underline",
+                                                   in: namespace,
+                                                   properties: .frame)
+                    }
+                }
             }
-            
-            titles[index]
-                .foregroundColor(isSelected ? tintColor : .secondary)
-                .padding(.horizontal, 6)
-                .robotoFont()
-        }
-        .padding(4)
-        .frame(minWidth: minWidth, maxHeight: maxHeight)
-        .onTapGesture {
-            selectedIndex = index
-        }
-        .animation(.spring(), value: selectedIndex)
+            .onTapGesture {
+                selectedIndex = index
+            }
+            .animation(.spring(), value: selectedIndex)
     }
 }
 
@@ -49,6 +47,7 @@ struct PagerTabStrip<Title: View, Content: View>: View {
     @ViewBuilder let content: () -> Content
     @Namespace var namespace
     var tintColor = Color.mint
+    @State private var previousIndex = 0
     
     var body: some View {
         VStack(spacing: 0) {
@@ -57,17 +56,24 @@ struct PagerTabStrip<Title: View, Content: View>: View {
                     HStack(alignment: .center) {
                         ForEach(titles.indices, id: \.self) { index in
                             PagerTabStripItem(selectedIndex: $selectedIndex, titles: $titles, index: index, tintColor: tintColor, namespace: namespace)
-                            .onChange(of: selectedIndex) { _ in
-                                withAnimation(.spring()) {
-                                    proxy.scrollTo(selectedIndex, anchor: .trailing)
+                                .onChange(of: selectedIndex) { _ in
+                                    withAnimation(.spring()) {
+                                        if selectedIndex > previousIndex {
+                                            let row = min(selectedIndex + 1, titles.count - 1)
+                                            proxy.scrollTo(row, anchor: .leading)
+                                        } else if selectedIndex < previousIndex {
+                                            let row = max(selectedIndex - 1, 0)
+                                            proxy.scrollTo(row, anchor: .trailing)
+                                        }
+                                        previousIndex = selectedIndex
+                                    }
                                 }
-                            }
                         }
                     }
-                    .padding(.horizontal, 6)
+                    .padding(6)
                 }
             }
-
+            
             
             TabView(selection: $selectedIndex) {
                 content()

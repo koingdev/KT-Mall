@@ -18,7 +18,7 @@ struct TabBarItem: View {
     
     var body: some View {
         VStack(spacing: 2) {
-            let color = isSelected ? Color.black : Color.gray.opacity(0.7)
+            let color = isSelected ? Color.black : .secondary
             Image(systemName: item.image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
