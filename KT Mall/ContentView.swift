@@ -19,15 +19,18 @@ struct ContentView: View {
 
     var body: some View {
         TabBar(items: tabs, selectedIndex: $tabSelectedIndex) { index in
-            PagerTabStrip(selectedIndex: $pagerSelectedIndex) {
-                Text("Sun Screen")
-                Text("Face Mask")
-                Text("Body")
-            } content: {
-                Color.mint
-                Color.blue
-                Color.yellow
-            }.tag(0)
+            PagerTabStrip(selectedIndex: $pagerSelectedIndex, titles: [
+                Text("Sun Screen"),
+                Text("Face Mask"),
+                Text("Body"),
+                Text("Best Seller")
+            ]) {
+                Color.mint.tag(0)
+                Color.blue.tag(1)
+                Color.yellow.tag(2)
+                Color.brown.tag(3)
+            }
+            .tag(0)
             
             Text("Cart")
                 .tag(1)

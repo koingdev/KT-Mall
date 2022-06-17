@@ -48,7 +48,6 @@ struct TabBar<Content: View>: View {
             TabView(selection: $selectedIndex) {
                 ForEach(items.indices, id: \.self) { index in
                     content(index)
-                        .opacity(fadeInOut ? 0 : 1)
                 }
             }
             
@@ -64,12 +63,7 @@ struct TabBar<Content: View>: View {
                         ForEach(items.indices, id: \.self) { index in
                             
                             Button {
-                                if index == selectedIndex { return }
-                                fadeInOut = selectedIndex != index
                                 selectedIndex = index
-                                withAnimation(.easeInOut(duration: 0.4)) {
-                                    fadeInOut.toggle()
-                                }
                             } label: {
                                 let isSelected = index == selectedIndex
                                 TabBarItem(item: items[index], isSelected: isSelected)
