@@ -16,16 +16,33 @@ struct ContentView: View {
         TabItemData(image: "heart.fill", title: "Favorite"),
         TabItemData(image: "person.circle.fill", title: "Account")
     ]
+    let products: [Product] = [
+        Product(name: "Nile All-in-One Lotion Lotion Aftershave (Lafrance Scent)", description: "Beauty", price: 20, image: URL(string: "https://m.media-amazon.com/images/I/61xsYkg4p0L._AC_UL640_FMwebp_QL65_.jpg")),
+        Product(name: "Anessa Perfect UV", description: "Beauty", price: 20, image: URL(string: "https://m.media-amazon.com/images/I/51ejRtSqzPL._AC_UL640_FMwebp_QL65_.jpg")),
+        Product(name: "Nile Mud Pack, Pore Pack, Peeling, Blackhead, Exfoliating Removal, 2.5 oz (70 g)", description: "Beauty", price: 20, image: URL(string: "https://m.media-amazon.com/images/I/811az203tLL._AC_UL640_FMwebp_QL65_.jpg")),
+        Product(name: "Keana Nadeshiko rice mask, 10 sheets", description: "Beauty", price: 20, image: URL(string: "https://m.media-amazon.com/images/I/61vBBpJwGjL._AC_UL640_FMwebp_QL65_.jpg")),
+        Product(name: "himecoto White Waki White R1 18g (x1)", description: "Beauty", price: 20, image: URL(string: "https://m.media-amazon.com/images/I/61H367sXrLL._AC_SX679_.jpg")),
+        Product(name: "Klairs Freshly Juiced Vitamin C Drop, Korean Cosmetics, Pure Vitamin C, Vitamin C Serum, Hypoallergenic, 1.18 oz (35 ml)", description: "Beauty", price: 20, image: URL(string: "https://m.media-amazon.com/images/I/6131DHA+O8L._AC_UL640_FMwebp_QL65_.jpg")),
+        Product(name: "ETUDE Official Play Color Eye Shadow Autumn Closet, 0.03 oz (0.7 g) x 10 Colors", description: "Beauty", price: 20, image: URL(string: "https://m.media-amazon.com/images/I/610JlxlYXDL._AC_UL640_FMwebp_QL65_.jpg"))
+    ]
+    @Namespace var productCardAnimation
 
     var body: some View {
         TabBar(items: tabs, selectedIndex: $tabSelectedIndex) { index in
-            PagerTabStrip(selectedIndex: $pagerSelectedIndex, titles: [
+            PagerTabStripView(selectedIndex: $pagerSelectedIndex, titles: [
+                Text("Best Seller"),
                 Text("Sun Screen"),
                 Text("Face Mask"),
-                Text("Body"),
-                Text("Best Seller")
+                Text("Body")
             ]) {
-                Color.white.tag(0)
+                ScrollView {
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 12), count: 2), spacing: 12) {
+                        ForEach(products, id: \.id) { product in
+                            ProductCardView(product: product, animation: productCardAnimation)
+                        }
+                    }.padding()
+                }.tag(0)
+
                 Color.white.tag(1)
                 Color.white.tag(2)
                 Color.white.tag(3)

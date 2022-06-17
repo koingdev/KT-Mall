@@ -12,9 +12,9 @@
 		A29D03D0285A25D9008A9F78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A29D03CF285A25D9008A9F78 /* Assets.xcassets */; };
 		A29D03D3285A25D9008A9F78 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A29D03D2285A25D9008A9F78 /* Preview Assets.xcassets */; };
 		A29D03DA285A25EE008A9F78 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29D03D9285A25EE008A9F78 /* TabBar.swift */; };
-		A29D03DC285B6D44008A9F78 /* PagerTabStrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29D03DB285B6D44008A9F78 /* PagerTabStrip.swift */; };
+		A29D03DC285B6D44008A9F78 /* PagerTabStripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29D03DB285B6D44008A9F78 /* PagerTabStripView.swift */; };
 		A29D03DE285B8994008A9F78 /* PagingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29D03DD285B8994008A9F78 /* PagingScrollView.swift */; };
-		A29D03E1285C5DA4008A9F78 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = A29D03E0285C5DA4008A9F78 /* SwiftUIPager */; };
+		A29D03E3285CCA3C008A9F78 /* ProductCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29D03E2285CCA3C008A9F78 /* ProductCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,8 +24,9 @@
 		A29D03CF285A25D9008A9F78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A29D03D2285A25D9008A9F78 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A29D03D9285A25EE008A9F78 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
-		A29D03DB285B6D44008A9F78 /* PagerTabStrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerTabStrip.swift; sourceTree = "<group>"; };
+		A29D03DB285B6D44008A9F78 /* PagerTabStripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerTabStripView.swift; sourceTree = "<group>"; };
 		A29D03DD285B8994008A9F78 /* PagingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingScrollView.swift; sourceTree = "<group>"; };
+		A29D03E2285CCA3C008A9F78 /* ProductCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,7 +34,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A29D03E1285C5DA4008A9F78 /* SwiftUIPager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,8 +64,9 @@
 				A29D03CF285A25D9008A9F78 /* Assets.xcassets */,
 				A29D03D1285A25D9008A9F78 /* Preview Content */,
 				A29D03D9285A25EE008A9F78 /* TabBar.swift */,
-				A29D03DB285B6D44008A9F78 /* PagerTabStrip.swift */,
+				A29D03DB285B6D44008A9F78 /* PagerTabStripView.swift */,
 				A29D03DD285B8994008A9F78 /* PagingScrollView.swift */,
+				A29D03E2285CCA3C008A9F78 /* ProductCardView.swift */,
 			);
 			path = "KT Mall";
 			sourceTree = "<group>";
@@ -95,7 +96,6 @@
 			);
 			name = "KT Mall";
 			packageProductDependencies = (
-				A29D03E0285C5DA4008A9F78 /* SwiftUIPager */,
 			);
 			productName = "KT Mall";
 			productReference = A29D03C8285A25D7008A9F78 /* KT Mall.app */;
@@ -126,7 +126,6 @@
 			);
 			mainGroup = A29D03BF285A25D7008A9F78;
 			packageReferences = (
-				A29D03DF285C5DA4008A9F78 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
 			);
 			productRefGroup = A29D03C9285A25D7008A9F78 /* Products */;
 			projectDirPath = "";
@@ -154,9 +153,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A29D03E3285CCA3C008A9F78 /* ProductCardView.swift in Sources */,
 				A29D03DA285A25EE008A9F78 /* TabBar.swift in Sources */,
 				A29D03CE285A25D7008A9F78 /* ContentView.swift in Sources */,
-				A29D03DC285B6D44008A9F78 /* PagerTabStrip.swift in Sources */,
+				A29D03DC285B6D44008A9F78 /* PagerTabStripView.swift in Sources */,
 				A29D03CC285A25D7008A9F78 /* KT_MallApp.swift in Sources */,
 				A29D03DE285B8994008A9F78 /* PagingScrollView.swift in Sources */,
 			);
@@ -359,25 +359,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		A29D03DF285C5DA4008A9F78 /* XCRemoteSwiftPackageReference "SwiftUIPager" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/fermoya/SwiftUIPager.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		A29D03E0285C5DA4008A9F78 /* SwiftUIPager */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A29D03DF285C5DA4008A9F78 /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
-			productName = SwiftUIPager;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A29D03C0285A25D7008A9F78 /* Project object */;
 }

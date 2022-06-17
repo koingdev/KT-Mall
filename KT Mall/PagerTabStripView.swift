@@ -41,7 +41,7 @@ struct PagerTabStripItem<Title: View>: View {
     }
 }
 
-struct PagerTabStrip<Title: View, Content: View>: View {
+struct PagerTabStripView<Title: View, Content: View>: View {
     @Binding var selectedIndex: Int
     @State var titles: [Title]
     @ViewBuilder let content: () -> Content
@@ -70,7 +70,7 @@ struct PagerTabStrip<Title: View, Content: View>: View {
                                 }
                         }
                     }
-                    .padding(6)
+                    .padding(4)
                 }
             }
             
