@@ -14,6 +14,8 @@ struct Product: Identifiable {
     let price: Double
     let image: URL?
     var isFavorite = false
+    
+    static func empty() -> Product { Product(name: "", description: "", price: 0, image: nil) }
 }
 
 struct ProductCardView: View {
@@ -35,27 +37,31 @@ struct ProductCardView: View {
                     ProgressView()
                 }
             }
+            .matchedGeometryEffect(id: "image-\(product.id)", in: animation)
             .frame(height: 160)
+
             
             Spacer()
             
             VStack(alignment: .leading) {
                 Text(product.name)
                     .foregroundColor(.primary)
-                    .lineLimit(2)
                     .robotoFont()
+                    .lineLimit(2)
                 
                 HStack {
                     Text("$\(product.price)")
                         .foregroundColor(.secondary)
                         .robotoFont(16)
+
                     Spacer()
                     Image(systemName: "heart")
                         .resizable()
                         .frame(width: 20, height: 18)
                         .foregroundColor(.pink.opacity(0.7))
                 }
-            }.padding(8)
+            }
+            .padding(8)
         }
         .background(.white)
         .frame(height: 250)

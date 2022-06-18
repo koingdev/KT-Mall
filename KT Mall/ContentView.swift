@@ -26,31 +26,50 @@ struct ContentView: View {
         Product(name: "ETUDE Official Play Color Eye Shadow Autumn Closet, 0.03 oz (0.7 g) x 10 Colors", description: "Beauty", price: 20, image: URL(string: "https://m.media-amazon.com/images/I/610JlxlYXDL._AC_UL640_FMwebp_QL65_.jpg"))
     ]
     @Namespace var productCardAnimation
+    @State var showDetail = false
+    @State var selectedProduct: Product = .empty()
 
     var body: some View {
         TabBar(items: tabs, selectedIndex: $tabSelectedIndex) { index in
 
             // First tab
-            PagerTabStripView(selectedIndex: $pagerSelectedIndex, titles: [
-                Text("Best Seller"),
-                Text("Sun Screen"),
-                Text("Face Mask"),
-                Text("Body")
-            ]) {
-                ProductGridView(products: $products, animation: productCardAnimation)
-                    .tag(0)
+            ZStack {
+                
+                PagerTabStripView(selectedIndex: $pagerSelectedIndex, titles: [
+                    Text("Best Seller"),
+                    Text("Sun Screen"),
+                    Text("Face Mask"),
+                    Text("Body")
+                ]) {
+                    ProductGridView(products: $products, animation: productCardAnimation) { product in
+                        withAnimation(.interactiveSpring(response: 0.7, dampingFraction: 0.8, blendDuration: 0.8)) {
+                            selectedProduct = product
+                            showDetail.toggle()
+                        }
+                    }.tag(0)
 
-                ProductGridView(products: $products, animation: productCardAnimation)
-                    .tag(1)
-                
-                ProductGridView(products: $products, animation: productCardAnimation)
-                    .tag(2)
-                
-                ProductGridView(products: $products, animation: productCardAnimation)
-                    .tag(3)
+                    ProductGridView(products: $products, animation: productCardAnimation) { product in
+                        selectedProduct = product
+                    }.tag(1)
+                    
+                    ProductGridView(products: $products, animation: productCardAnimation) { product in
+                        selectedProduct = product
+                    }.tag(2)
+                    
+                    ProductGridView(products: $products, animation: productCardAnimation) { product in
+                        selectedProduct = product
+                    }.tag(3)
+
+                }
+                .tag(0)
+
+                if showDetail {
+                    ProductDetailView(show: $showDetail, selectedProduct: $selectedProduct, animation: productCardAnimation)
+                }
             }
-            .tag(0)
             
+            
+
             Text("Cart")
                 .tag(1)
             Text("Favorites")

@@ -16,6 +16,7 @@
 		A29D03DE285B8994008A9F78 /* PagingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29D03DD285B8994008A9F78 /* PagingScrollView.swift */; };
 		A29D03E3285CCA3C008A9F78 /* ProductCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29D03E2285CCA3C008A9F78 /* ProductCardView.swift */; };
 		A29D03E5285DEA96008A9F78 /* ProductGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29D03E4285DEA95008A9F78 /* ProductGridView.swift */; };
+		A29D03E7285DF102008A9F78 /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29D03E6285DF102008A9F78 /* ProductDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		A29D03DD285B8994008A9F78 /* PagingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingScrollView.swift; sourceTree = "<group>"; };
 		A29D03E2285CCA3C008A9F78 /* ProductCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardView.swift; sourceTree = "<group>"; };
 		A29D03E4285DEA95008A9F78 /* ProductGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductGridView.swift; sourceTree = "<group>"; };
+		A29D03E6285DF102008A9F78 /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				A29D03DD285B8994008A9F78 /* PagingScrollView.swift */,
 				A29D03E4285DEA95008A9F78 /* ProductGridView.swift */,
 				A29D03E2285CCA3C008A9F78 /* ProductCardView.swift */,
+				A29D03E6285DF102008A9F78 /* ProductDetailView.swift */,
 			);
 			path = "KT Mall";
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A29D03E3285CCA3C008A9F78 /* ProductCardView.swift in Sources */,
+				A29D03E7285DF102008A9F78 /* ProductDetailView.swift in Sources */,
 				A29D03DA285A25EE008A9F78 /* TabBar.swift in Sources */,
 				A29D03CE285A25D7008A9F78 /* ContentView.swift in Sources */,
 				A29D03DC285B6D44008A9F78 /* PagerTabStripView.swift in Sources */,
