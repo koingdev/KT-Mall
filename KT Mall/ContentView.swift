@@ -41,7 +41,7 @@ struct ContentView: View {
                     Text("Body")
                 ]) {
                     ProductGridView(products: $products, animation: productCardAnimation) { product in
-                        withAnimation(.interactiveSpring(response: 0.8, dampingFraction: 0.8, blendDuration: 1)) {
+                        withAnimation(.interactiveSpring(response: 0.5, dampingFraction: 0.8, blendDuration: 0)) {
                             showDetail.toggle()
                             selectedProduct = product
                         }

@@ -19,7 +19,7 @@ struct ProductDetailView: View {
             HStack {
                 Button {
                     showBackButton.toggle()
-                    withAnimation(.interactiveSpring(response: 0.8, dampingFraction: 0.8, blendDuration: 1)) {
+                    withAnimation(.interactiveSpring(response: 0.55, dampingFraction: 0.8, blendDuration: 0.55)) {
                         show.toggle()
                     }
                 } label: {
@@ -77,14 +77,14 @@ struct ProductDetailView: View {
     private func onChanged(value: DragGesture.Value) {
         let scaleValue = value.translation.height / screenHeight
         if 1 - scaleValue > 0.8 {
-            scale = 1 - scaleValue
+            scale = min(1 - scaleValue, 1)
         }
     }
     
     private func onEnded(value: DragGesture.Value) {
         if scale < 1 {
             showBackButton.toggle()
-            withAnimation(.interactiveSpring(response: 0.8, dampingFraction: 0.8, blendDuration: 1)) {
+            withAnimation(.interactiveSpring(response: 0.55, dampingFraction: 0.8, blendDuration: 0.55)) {
                 show.toggle()
             }
             scale = 1
