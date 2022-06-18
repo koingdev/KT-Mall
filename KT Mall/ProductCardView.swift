@@ -13,12 +13,13 @@ struct Product: Identifiable {
     let description: String
     let price: Double
     let image: URL?
+    var isFavorite = false
 }
 
 struct ProductCardView: View {
     var product: Product
     var animation: Namespace.ID
-
+    
     var body: some View {
         VStack(alignment: .center) {
             AsyncImage(url: product.image) { phase in
@@ -41,7 +42,7 @@ struct ProductCardView: View {
             VStack(alignment: .leading) {
                 Text(product.name)
                     .foregroundColor(.primary)
-                    .lineLimit(3)
+                    .lineLimit(2)
                     .robotoFont()
                 
                 HStack {
@@ -51,16 +52,15 @@ struct ProductCardView: View {
                     Spacer()
                     Image(systemName: "heart")
                         .resizable()
-                        .frame(width: 22, height: 22)
+                        .frame(width: 20, height: 18)
                         .foregroundColor(.pink.opacity(0.7))
                 }
             }.padding(8)
         }
-        .frame(height: 280)
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .strokeBorder()
-                .foregroundColor(.secondary.opacity(0.2))
+        .background(.white)
+        .frame(height: 250)
+        .mask(
+            RoundedRectangle(cornerRadius: 12, style: .continuous)
         )
     }
 }

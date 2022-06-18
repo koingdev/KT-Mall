@@ -16,7 +16,7 @@ struct ContentView: View {
         TabItemData(image: "heart.fill", title: "Favorite"),
         TabItemData(image: "person.circle.fill", title: "Account")
     ]
-    let products: [Product] = [
+    @State var products: [Product] = [
         Product(name: "Nile All-in-One Lotion Lotion Aftershave (Lafrance Scent)", description: "Beauty", price: 20, image: URL(string: "https://m.media-amazon.com/images/I/61xsYkg4p0L._AC_UL640_FMwebp_QL65_.jpg")),
         Product(name: "Anessa Perfect UV", description: "Beauty", price: 20, image: URL(string: "https://m.media-amazon.com/images/I/51ejRtSqzPL._AC_UL640_FMwebp_QL65_.jpg")),
         Product(name: "Nile Mud Pack, Pore Pack, Peeling, Blackhead, Exfoliating Removal, 2.5 oz (70 g)", description: "Beauty", price: 20, image: URL(string: "https://m.media-amazon.com/images/I/811az203tLL._AC_UL640_FMwebp_QL65_.jpg")),
@@ -29,23 +29,25 @@ struct ContentView: View {
 
     var body: some View {
         TabBar(items: tabs, selectedIndex: $tabSelectedIndex) { index in
+
+            // First tab
             PagerTabStripView(selectedIndex: $pagerSelectedIndex, titles: [
                 Text("Best Seller"),
                 Text("Sun Screen"),
                 Text("Face Mask"),
                 Text("Body")
             ]) {
-                ScrollView {
-                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 2), spacing: 8) {
-                        ForEach(products, id: \.id) { product in
-                            ProductCardView(product: product, animation: productCardAnimation)
-                        }
-                    }.padding(8)
-                }.tag(0)
+                ProductGridView(products: $products, animation: productCardAnimation)
+                    .tag(0)
 
-                Color.white.tag(1)
-                Color.white.tag(2)
-                Color.white.tag(3)
+                ProductGridView(products: $products, animation: productCardAnimation)
+                    .tag(1)
+                
+                ProductGridView(products: $products, animation: productCardAnimation)
+                    .tag(2)
+                
+                ProductGridView(products: $products, animation: productCardAnimation)
+                    .tag(3)
             }
             .tag(0)
             
@@ -61,7 +63,7 @@ struct ContentView: View {
 
 extension View {
     func robotoFont(_ size: CGFloat = 14) -> some View {
-        font(Font.custom("Roboto", size: size))
+        font(Font.custom("HelveticaNeue", size: size))
     }
 }
 

@@ -15,6 +15,7 @@
 		A29D03DC285B6D44008A9F78 /* PagerTabStripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29D03DB285B6D44008A9F78 /* PagerTabStripView.swift */; };
 		A29D03DE285B8994008A9F78 /* PagingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29D03DD285B8994008A9F78 /* PagingScrollView.swift */; };
 		A29D03E3285CCA3C008A9F78 /* ProductCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29D03E2285CCA3C008A9F78 /* ProductCardView.swift */; };
+		A29D03E5285DEA96008A9F78 /* ProductGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29D03E4285DEA95008A9F78 /* ProductGridView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		A29D03DB285B6D44008A9F78 /* PagerTabStripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerTabStripView.swift; sourceTree = "<group>"; };
 		A29D03DD285B8994008A9F78 /* PagingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingScrollView.swift; sourceTree = "<group>"; };
 		A29D03E2285CCA3C008A9F78 /* ProductCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardView.swift; sourceTree = "<group>"; };
+		A29D03E4285DEA95008A9F78 /* ProductGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductGridView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				A29D03D9285A25EE008A9F78 /* TabBar.swift */,
 				A29D03DB285B6D44008A9F78 /* PagerTabStripView.swift */,
 				A29D03DD285B8994008A9F78 /* PagingScrollView.swift */,
+				A29D03E4285DEA95008A9F78 /* ProductGridView.swift */,
 				A29D03E2285CCA3C008A9F78 /* ProductCardView.swift */,
 			);
 			path = "KT Mall";
@@ -158,6 +161,7 @@
 				A29D03CE285A25D7008A9F78 /* ContentView.swift in Sources */,
 				A29D03DC285B6D44008A9F78 /* PagerTabStripView.swift in Sources */,
 				A29D03CC285A25D7008A9F78 /* KT_MallApp.swift in Sources */,
+				A29D03E5285DEA96008A9F78 /* ProductGridView.swift in Sources */,
 				A29D03DE285B8994008A9F78 /* PagingScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
