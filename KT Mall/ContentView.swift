@@ -34,7 +34,6 @@ struct ContentView: View {
 
             // First tab
             ZStack {
-                
                 PagerTabStripView(selectedIndex: $pagerSelectedIndex, titles: [
                     Text("Best Seller"),
                     Text("Sun Screen"),
@@ -42,9 +41,9 @@ struct ContentView: View {
                     Text("Body")
                 ]) {
                     ProductGridView(products: $products, animation: productCardAnimation) { product in
-                        withAnimation(.interactiveSpring(response: 0.7, dampingFraction: 0.8, blendDuration: 0.8)) {
-                            selectedProduct = product
+                        withAnimation(.interactiveSpring(response: 0.8, dampingFraction: 0.8, blendDuration: 1)) {
                             showDetail.toggle()
+                            selectedProduct = product
                         }
                     }.tag(0)
 
@@ -62,6 +61,7 @@ struct ContentView: View {
 
                 }
                 .tag(0)
+
 
                 if showDetail {
                     ProductDetailView(show: $showDetail, selectedProduct: $selectedProduct, animation: productCardAnimation)

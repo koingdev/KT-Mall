@@ -77,7 +77,7 @@ struct TabBar<Content: View>: View {
                     
                 }
                 .background(Color.white)
-                .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: -2)
+                .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: -1)
 
             }
             .edgesIgnoringSafeArea(.bottom)
