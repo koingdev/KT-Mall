@@ -17,7 +17,7 @@ struct ContentView: View {
         TabItemData(image: "person.circle.fill", title: "Account")
     ]
     @State var products: [Product] = [
-        Product(name: "Nile All-in-One Lotion Lotion Aftershave (Lafrance Scent)", description: "Beauty", price: 20, image: URL(string: "https://m.media-amazon.com/images/I/61xsYkg4p0L._AC_UL640_FMwebp_QL65_.jpg")),
+        Product(name: "Nile All-in-One Lotion Lotion Aftershave (Lafrance Scent)", description: "Beauty", price: 20, image: URL(string: "https://d28qg0el9tv5wv.cloudfront.net/data/img/items/TPS-1d-10-dtp/thum_640x640.jpg")),
         Product(name: "Anessa Perfect UV", description: "Beauty", price: 20, image: URL(string: "https://m.media-amazon.com/images/I/51ejRtSqzPL._AC_UL640_FMwebp_QL65_.jpg")),
         Product(name: "Nile Mud Pack, Pore Pack, Peeling, Blackhead, Exfoliating Removal, 2.5 oz (70 g)", description: "Beauty", price: 20, image: URL(string: "https://m.media-amazon.com/images/I/811az203tLL._AC_UL640_FMwebp_QL65_.jpg")),
         Product(name: "Keana Nadeshiko rice mask, 10 sheets", description: "Beauty", price: 20, image: URL(string: "https://m.media-amazon.com/images/I/61vBBpJwGjL._AC_UL640_FMwebp_QL65_.jpg")),
@@ -30,10 +30,9 @@ struct ContentView: View {
     @State var selectedProduct: Product = .empty()
 
     var body: some View {
-        TabBar(items: tabs, selectedIndex: $tabSelectedIndex) { index in
-
-            // First tab
-            ZStack {
+        ZStack {
+            TabBar(items: tabs, selectedIndex: $tabSelectedIndex) { index in
+                // First tab
                 PagerTabStripView(selectedIndex: $pagerSelectedIndex, titles: [
                     Text("Best Seller"),
                     Text("Sun Screen"),
@@ -41,7 +40,7 @@ struct ContentView: View {
                     Text("Body")
                 ]) {
                     ProductGridView(products: $products, animation: productCardAnimation) { product in
-                        withAnimation(.interactiveSpring(response: 0.5, dampingFraction: 0.8, blendDuration: 0)) {
+                        withAnimation(.spring()) {
                             showDetail.toggle()
                             selectedProduct = product
                         }
@@ -60,24 +59,23 @@ struct ContentView: View {
                     }.tag(3)
 
                 }
-                .zIndex(0)
                 .tag(0)
+                
 
-
-                if showDetail {
-                    ProductDetailView(show: $showDetail, selectedProduct: $selectedProduct, animation: productCardAnimation)
-                        .zIndex(1)  // Always make sure it's on top
-                }
+                Text("Cart")
+                    .tag(1)
+                Text("Favorites")
+                    .tag(2)
+                Text("Account")
+                    .tag(3)
             }
             
             
 
-            Text("Cart")
-                .tag(1)
-            Text("Favorites")
-                .tag(2)
-            Text("Account")
-                .tag(3)
+            if showDetail {
+                ProductDetailView(show: $showDetail, selectedProduct: $selectedProduct, animation: productCardAnimation)
+                    .zIndex(1)  // Always make sure it's on top
+            }
         }
     }
 }
