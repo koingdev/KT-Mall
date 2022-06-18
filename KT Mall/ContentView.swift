@@ -60,11 +60,13 @@ struct ContentView: View {
                     }.tag(3)
 
                 }
+                .zIndex(0)
                 .tag(0)
 
 
                 if showDetail {
                     ProductDetailView(show: $showDetail, selectedProduct: $selectedProduct, animation: productCardAnimation)
+                        .zIndex(1)  // Always make sure it's on top
                 }
             }
             
